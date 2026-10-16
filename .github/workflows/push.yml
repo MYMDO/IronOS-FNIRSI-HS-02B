@@ -69,7 +69,7 @@ jobs:
         run: ./source/metadata.py ${{ matrix.model }}.json ${{ matrix.model }}
 
       - name: Archive ${{ matrix.model }} artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.model }}
           path: |
@@ -117,7 +117,7 @@ jobs:
         run: ./source/metadata.py ${{ matrix.model }}_multi-lang.json ${{ matrix.model }}_multi-lang
 
       - name: Archive ${{ matrix.model }} artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.model }}_multi-lang
           path: |
@@ -142,7 +142,7 @@ jobs:
       - run: ls -R source/Hexfile
 
       - name: Upload JSONs in bulk as metadata
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: metadata
           path: source/Hexfile/*.json
