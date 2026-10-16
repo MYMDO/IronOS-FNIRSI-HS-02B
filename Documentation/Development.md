@@ -41,7 +41,7 @@ $ pacman -S mingw-w64-x86_64-stlink
 ```
 8. Clone _IronOS_ repo:
 ```
-$ git clone --recursive https://github.com/Ralim/IronOS.git
+$ git clone --recursive https://github.com/MYMDO/IronOS-FNIRSI-HS-02B.git
 $ cd IronOS
 ```
 9. Follow steps _4-8_ from [macOS section](#macos);
@@ -154,7 +154,7 @@ On Windows follow the instructions on the official documentation to install 'Win
 1. Clone the repository, initialize and update submodules:
 
     ```sh
-    git clone --recurse-submodules https://github.com/Ralim/IronOS.git
+    git clone --recurse-submodules https://github.com/MYMDO/IronOS-FNIRSI-HS-02B.git
     ```
 
 2. Start the Docker container with the development environment:

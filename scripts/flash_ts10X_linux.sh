@@ -17,7 +17,7 @@ usage() {
     echo
     echo "This script has been tested to work on Fedora and Arch Linux."
     echo "If you experience any issues please open a ticket at:"
-    echo "https://github.com/Ralim/IronOS/issues/new"
+    echo "https://github.com/MYMDO/IronOS-FNIRSI-HS-02B/issues/new"
     echo
 }
 

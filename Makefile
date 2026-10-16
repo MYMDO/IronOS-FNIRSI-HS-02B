@@ -28,7 +28,8 @@ MKDOCS:=mkdocs
 endif
 
 # build output related directories
-ifdef OUT
+# NOTE: use `ifneq ($(strip ...))` so that an empty `OUT=` does not blank OUT_DIR
+ifneq ($(strip $(OUT)),)
 OUT_DIR=$(OUT)
 else
 OUT_DIR=$(CURDIR)/BUILDS
@@ -51,8 +52,8 @@ DOCKER_CMD=$(DOCKER_BIN)  -f $(DOCKER_YML)  run  --rm  builder
 # MkDocs config
 MKDOCS_YML=$(CURDIR)/scripts/IronOS-mkdocs.yml
 
-# supported models
-MODELS=TS100 TS80 TS80P Pinecil MHP30 Pinecilv2 S60 TS101 S60P T55 HS02 # target names & dir names
+# supported models (HS02A/HS02B share the Fnirsi BSP, HS02B/C210 is this fork's primary target)
+MODELS=TS100 TS80 TS80P Pinecil MHP30 Pinecilv2 S60 TS101 S60P T55 HS02 HS02A HS02B # target names & dir names
 MODELS_ML=Pinecil  Pinecilv2 # target names
 MODELS_MULTILANG=Pinecil_multi-lang  Pinecilv2_multi-lang # dir names
 
@@ -71,7 +72,7 @@ help:
 	@echo "But if you're impatient then just type \"make docker-build\" - it will:"
 	@echo "  * download, configure & start docker container"
 	@echo "  * compile builds of IronOS firmware for all supported models inside that container"
-	@echo "  * export generated binaries to \"scripts/ci/artefacts/\" local directory"
+	@echo "  * export generated binaries to \"BUILDS/\" local directory (set OUT env var to override)"
 	@echo "Patches are welcome. Happy Hacking!"
 	@echo
 
@@ -156,7 +157,7 @@ test-sh:
 	@echo ""
 	@echo "---- Checking shell scripts... ----"
 	@echo ""
-	@for f in `find  ./scripts  -type f  -iname "*.sh"  ! -name "flash_ts100_linux.sh"` ; do shellcheck "$${f}"; done;
+	@for f in `find ./scripts ./source ./tools -type f -iname "*.sh" ! -name "flash_ts10X_linux.sh"` ; do shellcheck "$${f}"; done;
 
 # python-related tests & checks
 test-py:

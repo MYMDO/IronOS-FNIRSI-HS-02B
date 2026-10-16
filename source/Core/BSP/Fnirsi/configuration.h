@@ -10,6 +10,10 @@
 #error "No model defined!"
 #endif
 
+// NOTE: MODEL_HS02 is the family flag shared by HS02/HS02A/HS02B (all use the
+// same N32L403 BSP, Pins.h, display and power stage). MODEL_HS02A/MODEL_HS02B
+// select tip tuning only (see below). Do not use MODEL_HS02 to distinguish
+// HS-02B hardware — check MODEL_HS02B explicitly.
 #if !defined(MODEL_HS02)
 #define MODEL_HS02 1
 #endif
@@ -168,12 +172,15 @@
 #define CALIBRATION_OFFSET 900 // 900 - Default adc offset in uV
 
 #if defined(MODEL_HS02B)
+// HS-02B: C210 micro-tips. Tuned PID below; power limits intentionally match
+// the C245 branch (60W default / 100W max) — same CH224K 20V front-end.
 #define POWER_LIMIT        60  // 60W default limit
 #define MAX_POWER_LIMIT    100 // 100W max limit for HS-02B
 #define TIP_RESISTANCE     26  // C210 resistance is 2.5 - 2.7 Ohm (2.6 Ohm nominal)
 #define TIP_PID_KP         40  // Tuned for C210 micro-tip thermal response
 #define TIP_PID_KD         4500
 #else
+// HS-02 / HS-02A: C245 tips.
 #define POWER_LIMIT        60  // 60W default limit for C245 tip
 #define MAX_POWER_LIMIT    100 // 100W max limit for C245 tip
 #define TIP_RESISTANCE     25  // C245 resistance is ~2.5 Ohm

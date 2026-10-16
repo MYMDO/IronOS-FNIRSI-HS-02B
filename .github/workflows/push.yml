@@ -9,11 +9,19 @@ on:
       - main
       - fnirsi_hs02
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
     container:
-      image: alpine:3.21
+      image: alpine:3.22
     strategy:
       matrix:
         model:
@@ -29,6 +37,8 @@ jobs:
             "T55",
             "TS101",
             "HS02",
+            "HS02A",
+            "HS02B",
           ]
       fail-fast: true
 
@@ -44,7 +54,7 @@ jobs:
           submodules: true
 
       - name: Git ownership exception
-        run: git config --global --add safe.directory /__w/IronOS/IronOS && git config --global safe.directory "$GITHUB_WORKSPACE"
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Git meta info
         run: echo "GITHUB_CI_PR_SHA=${{github.event.pull_request.head.sha}}" >> "${GITHUB_ENV}"
@@ -56,7 +66,7 @@ jobs:
         run: cp LICENSE scripts/LICENSE_RELEASE.md  source/Hexfile/
 
       - name: Generate json index file
-        run: ./source/metadata.py ${{ matrix.model }}.json
+        run: ./source/metadata.py ${{ matrix.model }}.json ${{ matrix.model }}
 
       - name: Archive ${{ matrix.model }} artifacts
         uses: actions/upload-artifact@v5
@@ -73,8 +83,9 @@ jobs:
 
   build_multi-lang:
     runs-on: ubuntu-24.04
+    timeout-minutes: 30
     container:
-      image: alpine:3.21
+      image: alpine:3.22
     strategy:
       matrix:
         model: ["Pinecil", "Pinecilv2"]
@@ -91,7 +102,7 @@ jobs:
           submodules: true
 
       - name: Git ownership exception
-        run: git config --global --add safe.directory /__w/IronOS/IronOS && git config --global safe.directory "$GITHUB_WORKSPACE"
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Git meta info
         run: echo "GITHUB_CI_PR_SHA=${{github.event.pull_request.head.sha}}" >> "${GITHUB_ENV}"
@@ -103,7 +114,7 @@ jobs:
         run: cp LICENSE scripts/LICENSE_RELEASE.md  source/Hexfile/
 
       - name: Generate json index file
-        run: ./source/metadata.py ${{ matrix.model }}_multi-lang.json
+        run: ./source/metadata.py ${{ matrix.model }}_multi-lang.json ${{ matrix.model }}_multi-lang
 
       - name: Archive ${{ matrix.model }} artifacts
         uses: actions/upload-artifact@v5
@@ -139,8 +150,9 @@ jobs:
 
   tests:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     container:
-      image: alpine:3.21
+      image: alpine:3.22
 
     steps:
       - name: Install dependencies (apk)
@@ -161,8 +173,9 @@ jobs:
 
   check_c-cpp:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     container:
-      image: alpine:3.21
+      image: alpine:3.22
 
     steps:
       - name: Install dependencies (apk)
@@ -173,10 +186,11 @@ jobs:
           submodules: true
 
       - name: Check format style with clang-format
-        run: make  clean  check-style
+        run: make -C source/ clean check-style
 
   check-settings-docs:
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
       - name: Run the menu docs generator
@@ -186,8 +200,9 @@ jobs:
 
   check_python:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     container:
-      image: alpine:3.21
+      image: alpine:3.22
 
     steps:
       - name: Install dependencies (apk)
@@ -221,8 +236,9 @@ jobs:
 
   check_docs:
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     container:
-      image: alpine:3.21
+      image: alpine:3.22
 
     steps:
       - name: Install dependencies (apk)
@@ -235,7 +251,7 @@ jobs:
           fetch-depth: 0
 
       - name: Git ownership exception
-        run: git config --global --add safe.directory /__w/IronOS/IronOS && git config --global safe.directory "$GITHUB_WORKSPACE"
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       - name: Check and verify documentation
         run: ./scripts/deploy.sh docs

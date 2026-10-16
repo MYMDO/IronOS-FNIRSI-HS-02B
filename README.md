@@ -91,8 +91,8 @@ python3 -m http.server 18080 --directory tools/hs02-wasm-preview
 1. Утримуйте кнопку **OK** і підключіть HS-02B кабелем USB до ПК.
 2. Відпустіть кнопку, коли з'явиться `Please drag the firmware file to the USB flash disk!`.
 3. Дочекайтесь MSD-накопичувача **BOOTLOADER** з порожнім файлом `READY.TXT`.
-4. Скопіюйте `HS02B_*_firmware.bin` на `BOOTLOADER`.
-   1. **На Linux скопіюйте файл двічі** (з `sync` після кожної копії) — bootloader FNIRSI
+4. Скопіюйте `HS02B_*_firmware.bin` на `BOOTLOADER` (автоматично: `./scripts/flash_hs02b_linux.sh source/Hexfile/HS02B_EN_firmware.bin`).
+   1. На Linux скрипт/вручну копіює файл двічі (з `sync` після кожної копії) — bootloader FNIRSI
       некоректно працює з USB write caching, інакше паяльник зависне в bootloader'і з напівзаписаним образом.
    2. Є таймаут ~40 с на початок завантаження — після нього bootloader виходить у поточну прошивку.
 5. З'явиться `Updating firmware!`, пристрій перезавантажиться в нову прошивку.

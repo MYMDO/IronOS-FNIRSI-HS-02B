@@ -3,6 +3,7 @@
 Getting started with IronOS on your Pinecil/TS80/TS80P/TS100.
 If your device did not come with IronOS already installed, or if you need to update to the latest version; please see the flashing guide for your device:
 
+- [FNIRSI HS-02B (this fork)](Flashing/HS02B.md)
 - [MHP30](https://ralim.github.io/IronOS/Flashing/MHP30)
 - [Pinecil V1](https://ralim.github.io/IronOS/Flashing/Pinecil%20V1/)
 - [Pinecil V2](https://ralim.github.io/IronOS/Flashing/Pinecil%20V2/)
