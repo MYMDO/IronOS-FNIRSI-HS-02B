@@ -115,7 +115,7 @@ OperatingMode moveToPreviousEntry(guiContext *cxt) {
   // Dismiss help text if showing, but still execute the navigation
   *isRenderingHelp = 0;
 
-  *currentMenuLength = 0; // Reset menu length
+  *currentMenuLength  = 0; // Reset menu length
   cxt->transitionMode = TransitionAnimation::Up;
 
   if (*subEntry == 0) {

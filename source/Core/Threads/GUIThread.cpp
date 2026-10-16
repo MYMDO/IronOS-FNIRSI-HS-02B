@@ -37,8 +37,8 @@ extern "C" {
 #define BUTTON_INACTIVITY_TIME   (60 * configTICK_RATE_HZ)
 
 // Temperature thresholds for display/LED power management
-constexpr uint16_t   DISPLAY_SLEEP_TEMP_THRESHOLD_C = 50;  // Below this, display may sleep after inactivity
-constexpr uint16_t   LED_COOLING_TEMP_THRESHOLD_C   = 55;  // Above this, LED shows "still hot" indicator
+constexpr uint16_t   DISPLAY_SLEEP_TEMP_THRESHOLD_C = 50;                   // Below this, display may sleep after inactivity
+constexpr uint16_t   LED_COOLING_TEMP_THRESHOLD_C   = 55;                   // Above this, LED shows "still hot" indicator
 constexpr TickType_t GUI_FRAME_INTERVAL             = TICKS_100MS * 4 / 10; // ~40ms ≈ 25fps target
 
 ButtonState   buttonsAtDeviceBoot;                                      // We record button state at startup, incase of jumping to debug modes

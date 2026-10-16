@@ -142,10 +142,15 @@ ButtonState getMappedButtonState(ButtonState buttons, bool swap) {
     return buttons;
   }
   switch (buttons) {
-  case BUTTON_F_LONG:  return BUTTON_B_LONG;
-  case BUTTON_F_SHORT: return BUTTON_B_SHORT;
-  case BUTTON_B_LONG:  return BUTTON_F_LONG;
-  case BUTTON_B_SHORT: return BUTTON_F_SHORT;
-  default:             return buttons;
+  case BUTTON_F_LONG:
+    return BUTTON_B_LONG;
+  case BUTTON_F_SHORT:
+    return BUTTON_B_SHORT;
+  case BUTTON_B_LONG:
+    return BUTTON_F_LONG;
+  case BUTTON_B_SHORT:
+    return BUTTON_F_SHORT;
+  default:
+    return buttons;
   }
 }

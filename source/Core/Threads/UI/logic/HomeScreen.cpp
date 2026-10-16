@@ -79,10 +79,10 @@ OperatingMode handleHomeButtons(const ButtonState buttons, guiContext *cxt) {
 
 OperatingMode drawHomeScreen(const ButtonState buttons, guiContext *cxt) {
 
-  currentTempTargetDegC = 0; // ensure tip is off
-  const uint16_t v = getInputVoltageX10(getSettingValue(SettingsOptions::VoltageDiv), 0);
-  const bool undervoltage = (v < lookupVoltageLevel());
-  uint32_t tipTemp = TipThermoModel::getTipInC();
+  currentTempTargetDegC       = 0; // ensure tip is off
+  const uint16_t v            = getInputVoltageX10(getSettingValue(SettingsOptions::VoltageDiv), 0);
+  const bool     undervoltage = (v < lookupVoltageLevel());
+  uint32_t       tipTemp      = TipThermoModel::getTipInC();
 
 #if defined(LCD_160x80)
   if (undervoltage) {

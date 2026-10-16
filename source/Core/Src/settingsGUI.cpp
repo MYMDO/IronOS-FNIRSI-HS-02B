@@ -62,15 +62,15 @@ static void displayDisplayRotation(void);
 static void setBoostTemp(void);
 static void displayBoostTemp(void);
 
-template<SettingsOptions opt, uint8_t digits> static void displaySettingT(void) { Display::printNumber(getSettingValue(opt), digits, FontStyle::LARGE); }
+template <SettingsOptions opt, uint8_t digits> static void displaySettingT(void) { Display::printNumber(getSettingValue(opt), digits, FontStyle::LARGE); }
 
 #ifdef PROFILE_SUPPORT
 static void setProfileTemp(const enum SettingsOptions option);
 static void displayProfilePhases(void);
 static bool showProfileOptions(void);
 // Template helpers for profile phases — replaces 22 individual functions
-template<SettingsOptions opt> static void setProfileTempT(void) { setProfileTemp(opt); }
-template<int minPhases> static bool showPhaseT(void) { return getSettingValue(SettingsOptions::ProfilePhases) >= minPhases; }
+template <SettingsOptions opt> static void setProfileTempT(void) { setProfileTemp(opt); }
+template <int minPhases> static bool       showPhaseT(void) { return getSettingValue(SettingsOptions::ProfilePhases) >= minPhases; }
 #endif /* PROFILE_SUPPORT */
 
 static void displayAutomaticStartMode(void);
@@ -840,18 +840,14 @@ static void setBrightnessHandler(void) {
   Display::setBrightness(getSettingValue(SettingsOptions::DisplayBrightness));
 }
 
-static void displayBrightnessLevel(void) {
-  Display::printNumber((getSettingValue(SettingsOptions::DisplayBrightness) / BRIGHTNESS_STEP + 1), 1, FontStyle::LARGE);
-}
+static void displayBrightnessLevel(void) { Display::printNumber((getSettingValue(SettingsOptions::DisplayBrightness) / BRIGHTNESS_STEP + 1), 1, FontStyle::LARGE); }
 
 static void setInvertHandler(void) {
   nextSettingValue(SettingsOptions::DisplayInversion);
   Display::setInverseDisplay(getSettingValue(SettingsOptions::DisplayInversion));
 }
 
-static void displayInvertColor(void) {
-  Display::drawCheckbox(getSettingValue(SettingsOptions::DisplayInversion));
-}
+static void displayInvertColor(void) { Display::drawCheckbox(getSettingValue(SettingsOptions::DisplayInversion)); }
 
 static void displayLogoTime(void) {
   switch (getSettingValue(SettingsOptions::LOGOTime)) {
@@ -954,8 +950,6 @@ static void displayPowerPulse(void) {
 }
 
 static bool showPowerPulseOptions(void) { return getSettingValue(SettingsOptions::KeepAwakePulse) > 0; }
-
-
 
 static void setResetSettings(void) {
   if (userConfirmation(translatedString(Tr->SettingsResetWarning))) {

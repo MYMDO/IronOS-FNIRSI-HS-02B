@@ -107,7 +107,7 @@ OperatingMode handleSolderingButtons(const ButtonState buttons, guiContext *cxt)
     break;
   case BUTTON_OK_SHORT: // Dedicated OK button opens temperature adjust
 #if defined(LCD_160x80)
-    // TemperatureAdjust is a mono screen; hard cut, see the note above.
+                        // TemperatureAdjust is a mono screen; hard cut, see the note above.
     cxt->transitionMode = TransitionAnimation::None;
 #else
     cxt->transitionMode = TransitionAnimation::Left;
