@@ -183,6 +183,11 @@ fabric.properties
 
 #### IronOS project specific files ####
 
+# Pinecilv2 BLE/RF binary blobs are required link inputs, keep them tracked
+!source/Core/BSP/Pinecilv2/bl_mcu_sdk/components/ble/bl702_rf/lib/libbl702_rf.a
+!source/Core/BSP/Pinecilv2/bl_mcu_sdk/components/ble/blecontroller/lib/libblecontroller_702_m0s1s.a
+!source/Core/BSP/Pinecilv2/bl_mcu_sdk/components/ble/blecontroller/lib/libblecontroller_702_std.a
+
 # Binaries
 source/Hexfile/
 source/Objects/

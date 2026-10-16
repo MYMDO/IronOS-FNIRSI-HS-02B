@@ -1,7 +1,7 @@
 #include "ui_drawing.hpp"
 #ifdef OLED_128x32
 
-void ui_draw_warning_undervoltage(void) {
+void ui_draw_warning_undervoltage_idle(void) {
   Display::clearScreen();
   Display::setCursor(0, 0);
   if (getSettingValue(SettingsOptions::DetailedSoldering)) {
@@ -15,6 +15,10 @@ void ui_draw_warning_undervoltage(void) {
   }
 
   Display::refresh();
+}
+
+void ui_draw_warning_undervoltage(void) {
+  ui_draw_warning_undervoltage_idle();
   GUIDelay();
   waitForButtonPress();
 }

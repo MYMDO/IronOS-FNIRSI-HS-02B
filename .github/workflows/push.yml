@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     container:
-      image: alpine:3.22
+      image: alpine:3.21
     strategy:
       matrix:
         model:
@@ -85,7 +85,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     container:
-      image: alpine:3.22
+      image: alpine:3.21
     strategy:
       matrix:
         model: ["Pinecil", "Pinecilv2"]
@@ -152,7 +152,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     container:
-      image: alpine:3.22
+      image: alpine:3.21
 
     steps:
       - name: Install dependencies (apk)
@@ -175,7 +175,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     container:
-      image: alpine:3.22
+      image: alpine:3.21
 
     steps:
       - name: Install dependencies (apk)
@@ -202,7 +202,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     container:
-      image: alpine:3.22
+      image: alpine:3.21
 
     steps:
       - name: Install dependencies (apk)
@@ -238,7 +238,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     container:
-      image: alpine:3.22
+      image: alpine:3.21
 
     steps:
       - name: Install dependencies (apk)
